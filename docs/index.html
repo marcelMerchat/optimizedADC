@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Optimized Analog-to-Digital Converter</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Optimized Analog-to-Digital Converter">
+  <meta name="author" content="Marcel Merchat">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Optimized Analog-to-Digital Converter</h1>
+    <h2></h2>
+    <p>Marcel Merchat<br/>RF and Microwave Engineer</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+</script>
+
+<style> 
+
+/* The style sheet file for slidify is in a subdirectory: */
+/*    "./libraries/frameworks/io2012/css/slidify.css"                         */
+
+custsty {
+  /*background-image:url(C:/path/mypng.png);*/ 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.boxText {
+     font-size:0.9em;
+
+}
+    
+table {
+    border-collapse: collapse;
+    width: 980px;
+    height: 400px;
+    /*background-color: #9999FF;*/
+    background-image: none;
+    cell-spacing: 0px;
+    /*padding-left: 0px;*/
+    /*padding-right: 75px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0px solid #BBBBFF;
+    background-color: #CCEEFF;
+    margin: auto;
+}
+
+th {
+    font-color:#FF0000;
+    padding-left: 0px;
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #CCEEFF;
+    cell-spacing: 0px;
+    border: 0px solid #FFFFFF;
+    margin: auto;
+    width: 480px;
+    height: 20px;
+}
+
+td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cell-spacing: 0px;
+    border: 0px solid #000000;
+    background-color: #CCEEFF;
+    margin: auto;
+    height: 20px;
+}
+
+tr {
+    
+    margin: auto;
+
+}
+
+body {
+  background-color: #EEEEEE;
+}
+
+slide:not(.segue)  h2{
+ font-family: "Open Sans Condensed";
+ font-weight: 700;
+ color: #449944;
+ /*background-color: #00FFFF; background of S3 */
+}
+
+h3 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:36px;
+    LINE-HEIGHT:54px;
+    color: #449944;
+    padding-top: 10px;
+    padding-bottom: 4px;
+
+}
+
+h4 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:28px;
+    LINE-HEIGHT:42px;
+    color: #202020;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: justify;
+}
+
+h5 {
+    font-family: arial;
+    font-weight: normal;
+    font-size:24px;
+    LINE-HEIGHT:36px;
+    color: #202020;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+}
+
+h6 {
+    font-family: arial;
+    font-weight: 200;
+    font-size:18px;
+    LINE-HEIGHT:26px;
+    color: #202020;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: justify;
+}
+
+.list-line-1 {
+    LINE-HEIGHT:20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.list-line-middle {
+    LINE-HEIGHT:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.list-line-last {
+    LINE-HEIGHT:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #101010;
+}
+
+.booktitle {
+    LINE-HEIGHT:20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #101010;
+    font-style: italic;
+}
+
+.columntitle {
+    font-size:16px;
+    LINE-HEIGHT:20px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    text-align: center;
+    color: #101010;
+    }
+
+p {
+    padding-left:10px;
+    font-family: arial, verdana, sans-serif;
+    font-size:14px;
+    color: #11FF11;
+    text-align: justify;
+}
+
+.tablenote{
+    padding-top: 15px;
+    font-size:20px;
+}
+
+.psmall {
+    padding-left:10px;
+    font-family: arial, verdana, sans-serif;
+    font-size:14px;
+    color: #11FF11;
+}
+
+img {
+    display: block;
+    background-color: #CCEEFF;
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-top: 20px;
+    padding-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img {
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0px solid #00FFFF;
+    margin: auto;
+}
+
+caption{
+    padding-bottom: 8px;
+    font-size: 0.5em;
+}
+sub, sup {
+ font-size: 75%;
+ line-height: 0;
+ position: relative;
+ vertical-align: baseline;
+}
+
+.logga img {
+    width: 70%;
+    height: auto;
+}
+
+.title-slide hgroup > h1 {
+  color: #111111;  /* #537E43 #EF5150*/  /*#535E43*/
+}
+
+.title-slide hgroup > h2 {
+  color: #110000 ;  /* #537E43 #EF5150*/  /*#535E43*/
+}
+
+.title-slide hgroup > p {
+  font-family: 'Open Sans','Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;
+  text-align: justify;
+  font-size:22px;
+  line-height: 1.5em;
+  padding-left:10px;
+  color: #111111;
+}
+
+.title-slide {
+  background-color: #CBE7B5 /*#CBE7A5; #EDE0CF; ; #CA9F9D*/
+  /* background-image:url(http://goo.gl/EpXln); */
+  
+  /* Reduce Space between Title and Body */
+slides > slide  {
+  margin-top: 15px;
+  background-color: #00FFFF;
+  color: #00FFFF;
+}
+}
+
+</style>
+
+<h3>The Optimizing Problem for an ADC</h3>
+
+<h5>An analog-to-digital converter (ADC) converts an analog signal produced by the front end of a RF receiver to a digital signal for further processing and decoding of the message. While there are many advantages to the digital conversion, we must consider the inherent distortion of the process. Engineers use several models to calculate the signal-to-noise ratio of an ADC. For this analysis, the engineer must use a prescribed number of discrete voltage levels that cannot be changed.</h5>
+
+<h5>An ADC accomplishes its function by quantizing the continuous voltage range to a set of discrete levels at its output. This adds an error voltage Q to the input analog signal because there is a voltage difference between the original signal and the nearest discrete level.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h3>ADC Models for Computing Signal-to-Noise Ratio</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>(A) The ADC has already been optimized for a uniform probability distribution of signal levels over the voltage range of the ADC. The signal levels match the available data bins of the ADC with no overshoot. All bins have the same size with uniform spacing.</h5>
+
+<h5>(B) The voltage range of the ADC is optimized to provide the lowest possible distortion for a random communication signal with a normal probability distribution that overshoots the voltage range of the ADC. All bins have the same size with uniform spacing.</h5>
+
+<h5>(C) Identical to Model B except the width of the data bins and their spacing is adjusted logrithmically.</h5>
+
+<h5>For this analysis, there are seven discrete levels available. Models B and C better reflect the real nature of an ADC than Model A, but this model is much easier to use.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <p><html>
+<head>
+</head>
+<body>
+    <table>
+      <tr><td><p class="tablenote">Model A</p></td></tr>
+      <tr><td class="img"><img class="img" src="mod1.png" width="500px" height="420px"/img></td></tr>
+        <tr><td><p class="tablenote">The probability distribution for the 1-Volt rms random signal is a uniform and flat for Model A. All measurements fall within the bins with no overshoot. The width of the distribution does not fully cover the last bin. This is necessary for comparison with the random distribution for Method B.</p>
+        </td></tr>
+    </table>
+</body>
+</html></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h3>Model-A for Signal-to-Noise Ratio</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>To use this simple model, you can skip to Equation-2 on the next slide, but below we justify this equation from communication theory which uses some concepts from probability such as expected value which is expressed as E(X) where X is a random variable. For our problem, X = \(x-x_i\) where x is a voltage level at the input of the ADC and \(x_i\) is the discrete level which will be assigned to any voltage level in a bin. We calculate an expected value by multiplying the random variable by the probability density and integrating the product over the signal voltage range. For this basic model, there is no overshoot and the probability density is uniform with magnitude 1/d. We begin by calculating the expected value of the variance \(\sigma^2\) of this random variable.</h5>
+
+<p>\[\sigma^2 = E\{X^2\} = \int_{-\frac{d}{2}}^{\frac{d}{2}} {(x-x_i)^2} \cdot \frac{1}{d} \; dx\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h3>Quantization Voltage Error</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The error voltage which we designate as Q is 169-mV rms which we compute by taking the square root of the variance. Model A assumes the space between discrete levels has been optimized. The optimum spacing for a 1-Volt rms signal with seven levels is d = 0.586.</h5>
+
+<h6>\[Q = \sigma = \sqrt{E\{X^2\}} = \frac {d}{\sqrt{12}}= \frac {0.586}{\sqrt{12}} = 0.169\]</h6>
+
+<h5>This slideshow is produced by a data science tool with internal code blocks that perform all of the calulations. You see the output of code blocks when boxes such as the one below appears. The entire slideshow is generated by the program; nothing is done manually which is required for reproducibility.</h5>
+
+<pre><code>## [1] &quot;Q = 169.16 mV RMS&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h3>ADC Voltage Range</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>\(V_{fs}\) is the full-scale voltage \(V_{fs}=7 \cdot d=4.10\) Volts.</h5>
+
+<h5>A popular model for an ADC--which we are not using--assumes a sinusoidal waveform across the seven ADC bins where a rms signal voltage is calculated. In order to compare simple models of random communication signals, the signal voltage is always set to 1-Volt rms.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h3>Signal-to-Noise Ratio (SNR) for Model A</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The quantization noise decreases and the signal-to-noise level increases as the number n of discrete levels increases. The Quantization noise is transformed to a decibel value. The signal voltage is set equal to 1-Volt rms. In order to match the literature and Model B, we will assume that the rms voltage is 1-Volt and that the signal levels have a flat probability distribution across the full bin range.</h5>
+
+<h6>\[SNR = \frac {s^2}{Q^2} = \frac {1}{Q^2} = 34.9\]</h6>
+
+<pre><code class="r">paste(&quot;SNR = &quot;, formatC(1/Q^2, digits = 1, format = &quot;f&quot;), sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;SNR = 34.9&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h3>SNR in Decibels</h3>
+  </hgroup>
+  <article data-timings="">
+    <h6>\[SNR = 10 \cdot log_{10}(\frac {s^2}{Q^2}) = 15.4\]</h6>
+
+<pre><code class="r">paste(&quot;SNR = &quot;, formatC(20*log10(1/Q), digits = 2, format = &quot;f&quot;), &quot;-dB&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;SNR = 15.43-dB&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>Summary for Optimized ADC with no Overshoot</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The signal-to-noise ratio for Model A analysis with no overshoot only depends on the spacing between discrete levels.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Model B: Optimized ADC for Signal Overshoot:</h2>
+  </hgroup>
+  <article data-timings="">
+    <h5>We will next discuss a more developed model where the probability distribution of the signal level varies and may overshoot the input range of the ADC. The model assumes a normal probability distribution for a communication signal.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h3>Distortion</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>Distortion is the quantization noise power for the ADC. It is equivalent to the square of the quantization rms noise voltage of a 1-Ohm load. For other load values, divide the power by the load resistance.</h5>
+
+<h5>Rather than the simple method at Equation-3 for Model A, we are going to carry out an integration to find the expected distorsion power. For an optimum bin width of 0.586-volts, this includes the probability within 2.051 \(\sigma\) of the mean signal value at the center of the ADC range and this represents 96% of the population.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h3>Model Accuracy</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>Consider an information signal that has a gaussian distribution over many cycles of the longest harmonic period. To check how well this represents the signal of interest, we would gather a large number of random samples and plot a histogram of the measurements.</h5>
+
+<h5>The goal is to select the optimum channel spacing that minimizes distortion noise at the output of the ADC. If the available quantized levels are squeezed together, the error voltage for the bins decreases but overshoot noise increases. On the other hand, as the bins become larger, the bin error voltage increases while the overshoot noise decreases. We need to find the optimum spacing where the distortion is minimized.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <article data-timings="">
+    <p><html>
+<head>
+</head>
+<body>
+    <table>
+            <tr><td><p class="tablenote">Model B</p></td></tr>
+      <tr><td class="img"><img class="img" src="mod2.png" width="500px" height="420px"/img></td></tr>
+        <tr><td><p class="tablenote">The probability distribution for the signal level is a normal bell-shaped one that overshoots the bin range. The standard deviation is 1-Volt. About 95% of the measurements fall directly into the ADC bins and about 5% fall outside or overshoot the available bins.</p></td></tr>
+    </table>
+</body>
+</html></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h3>Optimized Model</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The optimum spacing d for a 1-Volt RMS signal with seven discrete levels is 0.586. This spacing has been known for over 50 years and was described by J. Max in 1960[1]. The table is reproduced in the Proakis-Solehi textbook[2] on page 296.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h3>Distortion from Samples within ADC Limits</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>We calculate a distortion level of 0.0274-Watts for incoming signals within the available ADC bins. The remaining four percent of the population overshoots the range of the ADC and they contribute more distortion because of the relatively larger errors for overshoot cases. Overshoot cases are quantized to the last available bin of the ADC.</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h3>Calculation for Distortion of Samples within ADC Bins</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>We integrate over the range for each bin. Here is the function  call for the highest bin. The function call includes the limits of the integration.</h5>
+
+<h6>\[Distortion_{bin1} =  integrate(dnorm7, \frac{5 \cdot d}{2*sigma},  \frac{7 \cdot d}{ 2 \cdot sigma})\]</h6>
+
+<h5>dnorm7 is a function that multiplies the squared voltage difference by a probability density dnorm.</h5>
+
+<h6>\[dnorm7 = (x-x7)^2 * dnorm(x)\]</h6>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h4>Calculation for Distortion of Samples within ADC Bins ... continued</h4>
+  </hgroup>
+  <article data-timings="">
+    <h5>We carry out the integration for each of the seven ADC bins and compute the sum. We calculate quantization noise of 165-mV RMS, which is roughly equivalent to the result of 169.2 mV rms for Model A, but we have not added any overshoot noise.</h5>
+
+<pre><code class="r">inbounds &lt;- i_1$value + i_2$value + i_3$value + i_4$value + i_5$value + i_6$value + i_7$value 
+paste(formatC(1000*inbounds^0.5, digits = 1, format = &quot;f&quot;), &quot;-mV RMS&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;165.5-mV RMS&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h3>Distortion of Samples that Fall Directly into Bins</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The distortion power is 0.0274-Watts for inbounds quantization noise.</h5>
+
+<pre><code class="r">paste(formatC(inbounds, digits = 4, format = &quot;f&quot;), &quot;-Watts&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;0.0274-Watts&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h3>Overshoot Distortion for of One Bin Interval</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The quantization noise for the first out-of-bounds interval contributes 0.0095-Watts to the distortion level.</h5>
+
+<pre><code class="r">overlimits1 &lt;- undershoot1$value + overshoot1$value
+paste(formatC(overlimits1, digits = 4, format = &quot;f&quot;), &quot;-Watts&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;0.0095-Watts&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h3>Total Distortion with Overshoot of One Bin Interval</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>The total distortion for J. Max was 0.0374 Watts in 1960. First interval out of bounds interval covers the boundary between 3-1/2 bin widths (2.051\(\sigma\)) and 4-1/2 bin widths (2.637\(\sigma\)) from the mean value of the distribution on both sides.</h5>
+
+<pre><code>## [1] &quot;0.0369-Watts&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h3>Total Quantization Error Voltage including Overshoot</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>We calculate quantization noise of 192-mV rms (Distortion = 0.0369) compared to the inbounds quantization noise of 165-mV rms.</h5>
+
+<pre><code class="r">paste(formatC(1000*(inbounds + overlimits1)^0.5, digits = 1, format = &quot;f&quot;), &quot;-mV rms&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;192.1-mV rms&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h3>Signal-to-Noise Ratio (SNR) for Model B</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>This time we will calculate the signal-to-noise ratio using distortion power. The signal voltage is 1-Volt rms. The signal-to-noise ratio for the simpler Model A compared to Model B with overshoot is 15.4-dB versus 14.3-dB in decibel units. The model that includes overshoot is worse and this illustrates the need to filter out some of the overshoot.</h5>
+
+<p>\[SNR = \frac {s^2}{Distortion} = \frac {1}{Distortion}\]</p>
+
+<pre><code class="r">paste(&quot;SNR = &quot;, formatC(10*log10(1/Distortion), digits = 2, format = &quot;f&quot;), &quot;-dB&quot;, sep=&quot;&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;SNR = 14.33-dB&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h3>Distortion of the Second Out-of-Bounds Interval</h3>
+  </hgroup>
+  <article data-timings="">
+    <h5>We do not consider the distortion beyond the first out-of-bounds interval because it would contribute considerable distortion and should be filtered from the signal. The second out-of-bounds interval covers the boundary between 4-1/2 bin widths (2.637\(\sigma\)) and 5-1/2 bin widths (3.223\(\sigma\)) from the mean value of the distribution. This portion of just under 1% of the total population would contribute about 20% of additonal distortion (0.00865-Watts) and raise the noise level from 192-mV RMS to 213-mV RMS (Distortion=0.0456-Watts).</h5>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <p><html>
+<head>
+</head>
+<body>
+    <h3> References</h2>
+    <br></br>
+    <h5 class="booktitle">Quantifying for Minimum Distortion</h4>
+    <h5 class="list-line-middle">J. Max (1960)</h4>
+    <h5 class="list-line-last">IRE Trans. Inform. Theory, vol. IT-6, pp. 7-12</h4>
+    <br></br>
+    <h5 class="booktitle">Communication Systems</h4>
+    <h5 class="list-line-middle">John G. Proakis, Masoud Salehi</h4>
+    <h5 class="list-line-last">Prentice Hall, 2nd Edition 2002</h4>
+    <br></br>
+    <h5 class="list-line-middle">Marcel Merchat, August 18, 2017</h4>
+</body>
+</html></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='ADC Models for Computing Signal-to-Noise Ratio'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Model-A for Signal-to-Noise Ratio'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Quantization Voltage Error'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='ADC Voltage Range'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Signal-to-Noise Ratio (SNR) for Model A'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='SNR in Decibels'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Summary for Optimized ADC with no Overshoot'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Model B: Optimized ADC for Signal Overshoot:'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Distortion'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Model Accuracy'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='NA'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Optimized Model'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Distortion from Samples within ADC Limits'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Calculation for Distortion of Samples within ADC Bins'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Calculation for Distortion of Samples within ADC Bins ... continued'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Distortion of Samples that Fall Directly into Bins'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Overshoot Distortion for of One Bin Interval'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Total Distortion with Overshoot of One Bin Interval'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Total Quantization Error Voltage including Overshoot'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Signal-to-Noise Ratio (SNR) for Model B'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Distortion of the Second Out-of-Bounds Interval'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='NA'>
+         24
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
